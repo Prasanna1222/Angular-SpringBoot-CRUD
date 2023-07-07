@@ -1,0 +1,27 @@
+<div class="login-box">
+    <h2>Edit User</h2>
+  
+    <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
+      <div class="user-box">
+        <label for="name">Name:</label>
+        <input type="text" id="name" class="form-control" formControlName="name">
+        <div *ngIf="formControls['name']?.errors?.['required']" class="text-danger">
+          Name is required.
+        </div>
+      </div>
+  
+      <div class="form-group">
+        <label for="email">Email:</label>
+        <input type="email" id="email" class="form-control" formControlName="email">
+        <div *ngIf="formControls['email']?.errors?.['required']" class="text-danger">
+          Email is required.
+        </div>
+        <div *ngIf="formControls['email']?.errors?.['email']" class="text-danger">
+          Invalid email format.
+        </div>
+      </div>
+  
+      <button type="submit" class="btn btn-primary" [disabled]="userForm.invalid || submitted">Update</button>
+    </form>
+  </div>
+  
